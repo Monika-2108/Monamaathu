@@ -5,3 +5,8 @@ venv/
 !.env.example
 __pycache__/
 *.pyc
+
+modules/dashboard.html.bak
+modules/dashboard.html.recovery.bak
+modules/missions.html.bak
+quiz.html.bak
