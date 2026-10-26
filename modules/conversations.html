@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Kannada with Mona | Monamaathu</title>
+
+<style>
+:root {
+  --green: #164b35;
+  --dark: #103c2a;
+  --cream: #fffaf0;
+  --gold: #d4a94f;
+  --muted: #69756c;
+  --light: #e8f2e8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--cream);
+  color: #25372c;
+  line-height: 1.7;
+}
+button, select { font: inherit; }
+button { cursor: pointer; }
+header {
+  background: white;
+  border-bottom: 1px solid #e8e3d7;
+  padding: 15px 22px;
+}
+.navbar {
+  max-width: 1050px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.brand {
+  color: var(--green);
+  font-size: 22px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.brand small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+}
+.back-link {
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+main {
+  max-width: 950px;
+  margin: auto;
+  padding: 35px 20px 65px;
+}
+.language-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  font-size: 13px;
+}
+select {
+  padding: 10px 12px;
+  border: 1px solid #d9e1d4;
+  border-radius: 10px;
+  background: white;
+  color: var(--green);
+}
+.welcome {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 25px;
+  background: linear-gradient(120deg, #e8f2e8, #f7edcf);
+  border-radius: 22px;
+  margin-bottom: 28px;
+}
+.mona-image {
+  width: 135px;
+  height: 160px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.welcome-label, .topic-label {
+  color: #9a742e;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+h1 {
+  color: var(--dark);
+  font-size: clamp(27px, 4vw, 38px);
+  line-height: 1.2;
+  margin: 8px 0;
+}
+.welcome p { color: #536457; font-size: 14px; }
+.lesson-card {
+  padding: 30px;
+  background: white;
+  border: 1px solid #ebe8dd;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px #203b250a;
+}
+.lesson-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.lesson-count {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.progress-track {
+  width: 100%;
+  height: 7px;
+  margin-top: 15px;
+  background: #edf0e9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.progress-fill {
+  width: 0;
+  height: 100%;
+  background: var(--green);
+  transition: width .2s;
+}
+h2 {
+  color: var(--green);
+  font-size: clamp(23px, 3vw, 30px);
+  margin-top: 23px;
+  line-height: 1.3;
+}
+.lesson-description {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 14px;
+}
+.phrase-list { display: grid; gap: 15px; margin-top: 25px; }
+.phrase {
+  padding: 20px;
+  border: 1px solid #e7eadf;
+  border-radius: 15px;
+  background: #fffefa;
+}
+.phrase-kannada {
+  color: var(--green);
+  font-size: 23px;
+  font-weight: 800;
+}
+.phrase-pronunciation {
+  color: #9a742e;
+  font-size: 13px;
+  margin-top: 3px;
+}
+.phrase-meaning { color: #526156; margin-top: 7px; font-size: 14px; }
+.phrase-actions { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 13px; }
+.small-button {
+  padding: 8px 12px;
+  border: 1px solid #dce4d6;
+  border-radius: 9px;
+  background: white;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+}
+.small-button:hover { background: var(--light); }
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+.nav-button {
+  padding: 12px 19px;
+  border: none;
+  border-radius: 11px;
+  background: var(--green);
+  color: white;
+  font-weight: 700;
+}
+.nav-button:hover { background: var(--dark); }
+.nav-button:disabled {
+  background: #d9dfd8;
+  color: #788078;
+  cursor: not-allowed;
+}
+.page-indicator { color: var(--muted); font-size: 12px; text-align: center; }
+.quiz-question {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #e7eadf;
+  border-radius: 14px;
+  background: #fffefa;
+}
+.quiz-question h3 { color: var(--green); font-size: 17px; margin-bottom: 12px; }
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 11px 13px;
+  margin-top: 8px;
+  border: 1px solid #dfe5db;
+  border-radius: 9px;
+  background: white;
+  color: #25372c;
+}
+.quiz-option:hover:not(:disabled) { background: var(--light); }
+.quiz-option:disabled { cursor: default; opacity: 1; }
+.quiz-option.selected { border-color: var(--green); background: var(--light); }
+.quiz-option.correct { background: #e1f3df; border-color: #77a96d; }
+.quiz-option.incorrect { background: #fbe8e4; border-color: #d59a8e; }
+.quiz-feedback, .status-message {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.quiz-score {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 13px;
+  background: var(--light);
+  color: var(--green);
+  font-weight: 800;
+  display: none;
+}
+.bottom-note { text-align: center; margin-top: 25px; color: var(--muted); font-size: 12px; }
+footer { text-align: center; padding: 25px; background: var(--dark); color: #d9e8dc; font-size: 12px; }
+
+@media(max-width:600px) {
+  main { padding: 22px 13px 45px; }
+  .welcome { flex-direction: column; text-align: center; padding: 20px; gap: 8px; }
+  .mona-image { width: 125px; height: 135px; }
+  .lesson-card { padding: 20px 15px; }
+  .phrase { padding: 15px; }
+  .phrase-kannada { font-size: 21px; }
+  .navigation { gap: 8px; }
+  .nav-button { padding: 11px 13px; font-size: 12px; }
+  .page-indicator { font-size: 10px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <nav class="navbar">
+    <a href="../index.html" class="brand">
+      Monamaathu 🌿
+      <small>KANNADA FOR EVERYONE</small>
+    </a>
+    <a href="../index.html#learn" class="back-link">← All topics</a>
+  </nav>
+</header>
+
+<main>
+  <div class="language-bar">
+    <label for="languageSelect">My language:</label>
+    <select id="languageSelect">
+      <option value="English">English</option>
+      <option value="Malayalam">മലയാളം · Malayalam</option>
+      <option value="Tamil">தமிழ் · Tamil</option>
+      <option value="Telugu">తెలుగు · Telugu</option>
+      <option value="Hindi">हिन्दी · Hindi</option>
+    </select>
+  </div>
+
+  <section class="welcome">
+    <img src="../mona.png" alt="Mona, your Kannada learning companion" class="mona-image">
+    <div>
+      <div class="welcome-label">Your learning companion</div>
+      <h1>Namaskara! Let's learn Kannada.</h1>
+      <p>I'm Mona. Learn useful Kannada one lesson at a time. Listen, repeat, and practise!</p>
+    </div>
+  </section>
+
+  <section class="lesson-card">
+    <div class="lesson-top">
+      <div class="topic-label" id="topicLabel">Kannada Lessons</div>
+      <div class="lesson-count" id="lessonCount"></div>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <h2 id="lessonTitle"></h2>
+    <p class="lesson-description" id="lessonDescription"></p>
+    <div class="phrase-list" id="phraseList"></div>
+    <div id="quizContainer"></div>
+    <div id="quizScore" class="quiz-score"></div>
+    <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
+
+    <div class="navigation">
+      <button class="nav-button" id="previousButton" type="button">← Previous</button>
+      <div class="page-indicator" id="pageIndicator"></div>
+      <button class="nav-button" id="nextButton" type="button">Next →</button>
+    </div>
+  </section>
+
+  <p class="bottom-note">Learn at your own pace. Listen, repeat, and enjoy speaking Kannada! 🌼</p>
+</main>
+
+<footer>Monamaathu 🌿 · Kannada for Everyone</footer>
+
+<script type="module">
+import { supabase } from "../supabase-config.js";
+import { modules } from "./lessons-data.js";
+
+const $ = id => document.getElementById(id);
+
+const translations = {
+  English: {},
+  Malayalam: {
+    "Hello": "നമസ്കാരം",
+    "How are you?": "സുഖമാണോ?",
+    "I am fine.": "എനിക്ക് സുഖമാണ്.",
+    "Thank you.": "നന്ദി.",
+    "Yes": "അതെ",
+    "No": "ഇല്ല"
+  },
+  Tamil: {
+    "Hello": "வணக்கம்",
+    "How are you?": "நீங்கள் எப்படி இருக்கிறீர்கள்?",
+    "I am fine.": "நான் நலமாக இருக்கிறேன்.",
+    "Thank you.": "நன்றி.",
+    "Yes": "ஆம்",
+    "No": "இல்லை"
+  },
+  Telugu: {
+    "Hello": "నమస్కారం",
+    "How are you?": "మీరు ఎలా ఉన్నారు?",
+    "I am fine.": "నేను బాగున్నాను.",
+    "Thank you.": "ధన్యవాదాలు.",
+    "Yes": "అవును",
+    "No": "కాదు"
+  },
+  Hindi: {
+    "Hello": "नमस्ते",
+    "How are you?": "आप कैसे हैं?",
+    "I am fine.": "मैं ठीक हूँ।",
+    "Thank you.": "धन्यवाद।",
+    "Yes": "हाँ",
+    "No": "नहीं"
+  }
+};
+
+const params = new URLSearchParams(location.search);
+const requestedTopic = params.get("topic") || "conversations";
+
+const currentModule =
+  modules.find(m => m.id === requestedTopic) ||
+  modules.find(m => m.id === "conversations") ||
+  modules[0];
+
+if (!currentModule) {
+  document.querySelector("main").innerHTML =
+    "<h2>Lessons could not be loaded.</h2><p>Check modules/lessons-data.js.</p>";
+  throw new Error("No learning modules found.");
+}
+
+const lessons = currentModule.lessons || [];
+const totalLessons = lessons.length;
+const totalPages = totalLessons * 2;
+
+const languageSelect = $("languageSelect");
+const topicLabel = $("topicLabel");
+const lessonCount = $("lessonCount");
+const lessonTitle = $("lessonTitle");
+const lessonDescription = $("lessonDescription");
+const phraseList = $("phraseList");
+const quizContainer = $("quizContainer");
+const quizScore = $("quizScore");
+const statusMessage = $("statusMessage");
+const previousButton = $("previousButton");
+const nextButton = $("nextButton");
+const pageIndicator = $("pageIndicator");
+const progressFill = $("progressFill");
+
+let currentPage = 0;
+let quizAnswers = {};
+let quizSubmitted = false;
+let savingResult = false;
+let availableVoices = [];
+let voiceWaitTimer = null;
+
+const savedLanguage = localStorage.getItem("monamaathu_language");
+if (savedLanguage && translations[savedLanguage]) {
+  languageSelect.value = savedLanguage;
+}
+
+topicLabel.textContent = currentModule.title || "Kannada Lessons";
+
+function loadVoices() {
+  if (!("speechSynthesis" in window)) return;
+  availableVoices = window.speechSynthesis.getVoices() || [];
+}
+
+if ("speechSynthesis" in window) {
+  loadVoices();
+  window.speechSynthesis.addEventListener("voiceschanged", loadVoices);
+}
+
+languageSelect.addEventListener("change", () => {
+  localStorage.setItem("monamaathu_language", languageSelect.value);
+  renderPage();
+});
+
+function getMeaning(item) {
+  const dictionary = translations[languageSelect.value] || {};
+  return dictionary[item.meaning] || item.meaning || "";
+}
+
+let kannadaAudio = null;
+
+function speakKannada(text) {
+  if (!text || !text.trim()) return;
+
+  if (!("speechSynthesis" in window)) {
+    statusMessage.textContent = "Speech is not supported in this browser.";
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text.trim());
+  utterance.lang = "kn-IN";
+  utterance.rate = 0.85;
+  utterance.pitch = 1;
+
+  const voices = window.speechSynthesis.getVoices();
+  const kannadaVoice = voices.find(v =>
+    v.lang.toLowerCase().startsWith("kn")
+  );
+
+  if (kannadaVoice) {
+    utterance.voice = kannadaVoice;
+  }
+
+  utterance.onstart = () => {
+    statusMessage.textContent = "Playing Kannada audio...";
+  };
+
+  utterance.onend = () => {
+    statusMessage.textContent = "Playback finished.";
+  };
+
+  utterance.onerror = (event) => {
+    statusMessage.textContent =
+      "Chrome Kannada voice failed: " + event.error +
+      ". Please open this page in Microsoft Edge.";
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+function renderPhrases(phrases) {
+  phraseList.innerHTML = "";
+
+  if (!phrases || phrases.length === 0) {
+    phraseList.innerHTML = `
+      <article class="phrase">
+        <strong>Lesson content is not available yet.</strong>
+        <p class="phrase-meaning">Add Kannada phrases to this lesson in lessons-data.js.</p>
+      </article>`;
+    return;
+  }
+
+  phrases.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "phrase";
+
+    const kannada = document.createElement("div");
+    kannada.className = "phrase-kannada";
+    kannada.textContent = item.kannada || "";
+
+    const pronunciation = document.createElement("div");
+    pronunciation.className = "phrase-pronunciation";
+    pronunciation.textContent =
+      "Pronunciation: " + (item.pronunciation || "Not provided");
+
+    const meaning = document.createElement("div");
+    meaning.className = "phrase-meaning";
+    meaning.textContent = getMeaning(item);
+
+    const actions = document.createElement("div");
+    actions.className = "phrase-actions";
+
+    const listen = document.createElement("button");
+    listen.className = "small-button";
+    listen.type = "button";
+    listen.textContent = "🔊 Listen";
+    listen.addEventListener("click", () => speakKannada(item.kannada || ""));
+
+    const repeat = document.createElement("button");
+    repeat.className = "small-button";
+    repeat.type = "button";
+    repeat.textContent = "↻ Repeat";
+    repeat.addEventListener("click", () => speakKannada(item.kannada || ""));
+
+    actions.append(listen, repeat);
+    card.append(kannada, pronunciation, meaning, actions);
+    phraseList.appendChild(card);
+  });
+}
+
+function getQuestions(lesson) {
+  return (lesson.questions || []).map(q => ({
+    q: q.question || q.q || "Choose the correct answer.",
+    options: q.options || [],
+    answer: q.answer
+  }));
+}
+
+function renderQuiz(lesson) {
+  quizContainer.innerHTML = "";
+  quizScore.style.display = "none";
+
+  const heading = document.createElement("h2");
+  heading.textContent = `Lesson ${Math.floor(currentPage / 2) + 1} Quiz`;
+  quizContainer.appendChild(heading);
+
+  const description = document.createElement("p");
+  description.className = "lesson-description";
+  description.textContent = "Answer the questions to check what you learned.";
+  quizContainer.appendChild(description);
+
+  const questions = getQuestions(lesson);
+
+  if (!questions.length) {
+    const empty = document.createElement("article");
+    empty.className = "quiz-question";
+    empty.innerHTML = `
+      <h3>Quiz questions are not available yet.</h3>
+      <p>Add questions to this lesson in lessons-data.js.</p>`;
+    quizContainer.appendChild(empty);
+    return;
+  }
+
+  questions.forEach((question, index) => {
+    const card = document.createElement("div");
+    card.className = "quiz-question";
+
+    const title = document.createElement("h3");
+    title.textContent = `${index + 1}. ${question.q}`;
+    card.appendChild(title);
+
+    question.options.forEach(option => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "quiz-option";
+      button.textContent = option;
+
+      const selected = quizAnswers[index] === option;
+      const correct = option === question.answer;
+
+      if (selected && !quizSubmitted) {
+        button.classList.add("selected");
+      }
+
+      if (quizSubmitted) {
+        button.disabled = true;
+        if (correct) button.classList.add("correct");
+        if (selected && !correct) button.classList.add("incorrect");
+      }
+
+      button.addEventListener("click", () => {
+        if (quizSubmitted) return;
+        quizAnswers[index] = option;
+        renderPage();
+      });
+
+      card.appendChild(button);
+    });
+
+    if (quizSubmitted) {
+      const feedback = document.createElement("p");
+      feedback.className = "quiz-feedback";
+      feedback.textContent = quizAnswers[index] === question.answer
+        ? "Correct! Well done! 🌟"
+        : `Correct answer: ${question.answer}`;
+      card.appendChild(feedback);
+    }
+
+    quizContainer.appendChild(card);
+  });
+
+  if (!quizSubmitted) {
+    const submit = document.createElement("button");
+    submit.type = "button";
+    submit.className = "nav-button";
+    submit.style.marginTop = "20px";
+    submit.textContent = "Check my answers";
+
+    submit.addEventListener("click", async () => {
+      if (questions.some((q, i) =>
+        !Object.prototype.hasOwnProperty.call(quizAnswers, i)
+      )) {
+        alert("Please answer every question first.");
+        return;
+      }
+
+      quizSubmitted = true;
+      renderPage();
+      await saveQuizResult(questions);
+    });
+
+    quizContainer.appendChild(submit);
+  } else {
+    const correctCount = questions.filter((q, i) =>
+      quizAnswers[i] === q.answer
+    ).length;
+
+    quizScore.style.display = "block";
+    quizScore.textContent =
+      `Your score: ${correctCount} out of ${questions.length}. ` +
+      (correctCount === questions.length
+        ? "Excellent work! 🎉"
+        : "Keep practising with Mona! 🌼");
+  }
+}
+
+async function saveQuizResult(questions) {
+  // Keep the existing module-completion RPC on the final lesson only.
+  const lessonIndex = Math.floor(currentPage / 2);
+
+  if (lessonIndex !== totalLessons - 1) {
+    statusMessage.textContent =
+      "Quiz completed! Continue to the next lesson.";
+    return;
+  }
+
+  if (savingResult) return;
+  savingResult = true;
+
+  try {
+    const correctCount = questions.filter((q, i) =>
+      quizAnswers[i] === q.answer
+    ).length;
+
+    const score = Math.round(correctCount / questions.length * 100);
+
+    statusMessage.textContent = "Saving module progress...";
+
+    const { data: authData, error: authError } =
+      await supabase.auth.getUser();
+
+    if (authError || !authData?.user) {
+      statusMessage.textContent =
+        "Quiz completed. Log in to save your progress.";
+      return;
+    }
+
+    const { data, error } = await supabase.rpc("complete_lesson", {
+      p_topic: currentModule.id,
+      p_score: score
+    });
+
+    if (error) {
+      statusMessage.textContent =
+        "Quiz completed, but progress could not be saved: " + error.message;
+      return;
+    }
+
+    statusMessage.textContent =
+      "Module progress saved successfully!" +
+      (data?.points_awarded != null
+        ? ` Points earned: ${data.points_awarded}.`
+        : "");
+  } catch (error) {
+    console.error("Supabase save error:", error);
+    statusMessage.textContent =
+      "Quiz completed, but saving failed. Please try again later.";
+  } finally {
+    savingResult = false;
+  }
+}
+
+function renderPage() {
+  const lessonIndex = Math.floor(currentPage / 2);
+  const isQuizPage = currentPage % 2 === 1;
+  const lesson = lessons[lessonIndex];
+
+  lessonCount.textContent = isQuizPage
+    ? `Quiz ${lessonIndex + 1} of ${totalLessons}`
+    : `Lesson ${lessonIndex + 1} of ${totalLessons}`;
+
+  progressFill.style.width =
+    `${totalPages ? ((currentPage + 1) / totalPages) * 100 : 0}%`;
+
+  pageIndicator.textContent =
+    `${currentPage + 1} / ${totalPages}`;
+
+  previousButton.disabled = currentPage === 0;
+  nextButton.textContent =
+    currentPage === totalPages - 1 ? "Finish ✓" : "Next →";
+
+  phraseList.innerHTML = "";
+  quizContainer.innerHTML = "";
+  quizScore.style.display = "none";
+  statusMessage.textContent = "";
+
+  if (!lesson) {
+    lessonTitle.textContent = "Lesson unavailable";
+    lessonDescription.textContent =
+      "Check the lesson data in lessons-data.js.";
+    return;
+  }
+
+  if (isQuizPage) {
+    lessonTitle.textContent = `Lesson ${lessonIndex + 1} Quiz`;
+    lessonDescription.textContent =
+      `Test what you learned in "${lesson.title || `Lesson ${lessonIndex + 1}`}".`;
+    renderQuiz(lesson);
+  } else {
+    lessonTitle.textContent = lesson.title || `Lesson ${lessonIndex + 1}`;
+    lessonDescription.textContent =
+      lesson.description ||
+      "Learn these Kannada phrases and practise speaking.";
+    renderPhrases(lesson.phrases || []);
+  }
+}
+
+function goToPage(nextPage) {
+  if (nextPage < 0 || nextPage >= totalPages) return;
+
+  // Keep answers while viewing the current lesson's quiz.
+  // Clear answers only when moving to a different lesson.
+  const oldLessonIndex = Math.floor(currentPage / 2);
+  const newLessonIndex = Math.floor(nextPage / 2);
+
+  if (oldLessonIndex !== newLessonIndex) {
+    quizAnswers = {};
+    quizSubmitted = false;
+  }
+
+  currentPage = nextPage;
+  renderPage();
+}
+
+previousButton.addEventListener("click", () => {
+  goToPage(currentPage - 1);
+});
+
+nextButton.addEventListener("click", () => {
+  if (currentPage < totalPages - 1) {
+    goToPage(currentPage + 1);
+  } else {
+    location.href = "../index.html#learn";
+  }
+});
+
+if (totalLessons === 0) {
+  lessonTitle.textContent = "No lessons available";
+  lessonDescription.textContent =
+    "Add lessons to this module in lessons-data.js.";
+  previousButton.disabled = true;
+  nextButton.disabled = true;
+} else {
+  renderPage();
+}
+</script>
+</body>
+</html>

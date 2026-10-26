@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real-life Kannada Missions | Monamaathu</title>
+<style>
+:root{--green:#075b40;--dark:#06452f;--cream:#fff9e9;--gold:#f4c75b;--muted:#66776a;--line:#e8dfc7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Arial,sans-serif;background:var(--cream);color:#244235;line-height:1.5}
+button{font:inherit;cursor:pointer}
+button:disabled{opacity:.65;cursor:not-allowed}
+a{text-decoration:none;color:inherit}
+header{background:#fffdf6;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.nav{max-width:1400px;margin:auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-size:24px;font-weight:900;color:var(--green);line-height:1.1}
+.brand small{display:block;font-size:9px;letter-spacing:1.3px;color:#6d786d}
+.navlinks{display:flex;align-items:center;gap:25px;font-size:13px;font-weight:700}
+.navlinks a:hover{color:#b07825}
+.navlinks .current{color:var(--green);border-bottom:2px solid var(--green);padding-bottom:6px}
+.home{border:1px solid #dce5d7;border-radius:22px;padding:8px 14px;color:var(--green)}
+.hero{position:relative;overflow:hidden;min-height:210px;padding:30px max(25px,calc((100% - 1300px)/2));background:linear-gradient(180deg,#bce6f1 0%,#e9f4cf 56%,#9dc88a 57%,#568d54 100%);isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#fff1c5 0%,transparent 55%);opacity:.8}
+.hills{position:absolute;inset:35px 0 0;z-index:-1;overflow:hidden;font-size:75px;letter-spacing:10px;white-space:nowrap;opacity:.85}
+.hero-content{max-width:1300px;margin:auto}
+.eyebrow{font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#91631c}
+h1{font-size:clamp(29px,4vw,43px);color:var(--dark);line-height:1.15;margin:5px 0}
+.hero p{font-size:14px;color:#355944;max-width:570px}
+.kannada{font-size:19px;font-weight:800;color:var(--green);margin-top:7px}
+.sign{position:absolute;right:8%;bottom:24px;background:#98602d;color:#fff3c5;border:5px solid #70431f;border-radius:5px;padding:9px 20px;font-size:20px;font-weight:900;transform:rotate(-2deg);box-shadow:0 5px 8px #44321b44}
+.bus{position:absolute;right:31%;bottom:12px;font-size:57px;filter:drop-shadow(0 5px 2px #0002)}
+main{max-width:1400px;margin:auto;padding:22px 24px 45px}
+.intro{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.intro h2{font-size:23px;color:var(--green)}
+.intro p{font-size:12px;color:var(--muted)}
+.count{background:#e4efdc;border-radius:20px;padding:8px 13px;font-size:12px;font-weight:800;color:var(--green);white-space:nowrap}
+.layout{display:grid;grid-template-columns:205px minmax(0,1fr);gap:20px}
+.sidebar{background:#fffdf4;border:1px solid var(--line);border-radius:17px;padding:17px 12px;height:fit-content}
+.side-title{font-weight:900;color:var(--green);font-size:14px;margin:0 7px 12px}
+.filter{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;text-align:left;border-radius:9px;padding:10px 9px;color:#486253;font-size:12px;font-weight:700;margin:2px 0}
+.filter:hover,.filter.active{background:#dcebd8;color:var(--green)}
+.side-note{margin-top:25px;border-radius:12px;padding:12px;background:#f7e9bd;font-size:12px;color:#496149}
+.side-note strong{display:block;color:var(--green);margin-bottom:5px}
+.mission-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.card{background:#fffdf6;border:1px solid #e9dfc7;border-radius:14px;overflow:hidden;box-shadow:0 2px 5px #51432108;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 18px #51432112}
+.art{height:105px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.art:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,#fff9d9 0%,transparent 65%)}
+.art span{position:relative;font-size:55px;filter:drop-shadow(0 4px 2px #3e341a18)}
+.art .sun{position:absolute;top:8px;right:12px;font-size:23px}
+.art .badge{position:absolute;top:9px;left:9px;font-size:10px;font-weight:900;border-radius:6px;background:#fffdf0;padding:4px 8px;color:var(--green);filter:none}
+.sage{background:linear-gradient(#b9e6f4,#d8edbd)}
+.yellow{background:linear-gradient(#ffedb5,#f5d6a0)}
+.pink{background:linear-gradient(#f7d7ca,#fff0cb)}
+.blue{background:linear-gradient(#bce5f4,#e1f2e8)}
+.orange{background:linear-gradient(#ffd6a0,#ffebc6)}
+.lavender{background:linear-gradient(#ded6fa,#f5e3f4)}
+.card-body{padding:12px}
+.category{font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:900;color:#a16d27}
+.card h3{font-size:15px;color:var(--green);margin:3px 0}
+.card p{font-size:11px;color:#657166;line-height:1.45;min-height:31px}
+.card .phrase{font-size:12px;font-weight:800;color:#52765b;margin:5px 0}
+.meta{display:flex;justify-content:space-between;gap:5px;align-items:center;margin:9px 0 10px;font-size:10px;color:#6a766a}
+.level{padding:3px 7px;border-radius:5px;background:#dcefd8;color:#1c713c;font-weight:900}
+.level.medium{background:#ffebbd;color:#98610c}
+.level.hard{background:#ffd9d0;color:#b42f26}
+.start{width:100%;border:0;background:var(--green);color:white;border-radius:9px;padding:9px 10px;font-size:11px;font-weight:850;text-align:left}
+.start:hover{background:#0c7651}
+.start span{float:right}
+.empty{grid-column:1/-1;padding:30px;text-align:center;color:var(--muted)}
+.tip{margin-top:22px;border-radius:14px;background:#075b40;color:white;padding:19px 22px;display:flex;gap:15px;align-items:center}
+.tip-icon{font-size:34px}
+.tip strong{font-size:16px}
+.tip p{font-size:12px;color:#d9e9dd}
+footer{text-align:center;padding:22px;background:var(--dark);color:#e2eddf;font-size:12px}
+dialog{width:min(550px,calc(100% - 24px));max-height:85vh;overflow:auto;margin:auto;border:1px solid #e6dec9;border-radius:20px;padding:23px;background:var(--cream);color:#244235;box-shadow:0 20px 80px #0005}
+dialog::backdrop{background:#092c20c9}
+.dialog-top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.dialog-top h2{font-size:23px;color:var(--green)}
+.close{width:35px;height:35px;border:1px solid var(--line);border-radius:50%;background:white;color:var(--green)}
+.dialog-intro{font-size:13px;color:var(--muted);margin:10px 0 15px}
+.dialog-phrase{padding:17px;border:1px solid var(--line);background:white;border-radius:13px}
+.dialog-phrase strong{display:block;font-size:25px;color:var(--green)}
+.dialog-phrase .pron{display:block;font-size:12px;color:#9a742e;margin-top:4px}
+.dialog-phrase p{font-size:13px;margin-top:8px}
+.actions{display:flex;gap:9px;margin-top:15px}
+.actions button{flex:1;border:0;border-radius:9px;padding:11px;background:var(--green);color:white;font-size:12px;font-weight:800}
+.actions .secondary{background:#dfebd9;color:var(--green)}
+.status{font-size:12px;color:var(--muted);margin-top:10px;min-height:18px}
+.progress-panel{margin-bottom:22px;background:#fffdf6;border:1px solid var(--line);border-radius:17px;padding:19px}
+.progress-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.progress-heading h2{font-size:20px;color:var(--green)}
+.progress-heading p{font-size:12px;color:var(--muted)}
+.progress-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px}
+.stat{background:#f4f0df;border-radius:12px;padding:13px}
+.stat-label{font-size:11px;color:var(--muted)}
+.stat-value{font-size:24px;font-weight:900;color:var(--green)}
+.stat small{font-size:10px;color:var(--muted)}
+.progress-track{height:10px;background:#e9e5d6;border-radius:99px;overflow:hidden;margin-top:15px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#075b40,#83b75c);border-radius:99px;transition:width .3s}
+.progress-caption{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);margin-top:6px}
+.badges-title{font-size:14px;color:var(--green);margin-top:18px}
+.badges-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.achievement{background:#f5f0df;border:1px solid #e8dfc7;border-radius:10px;padding:9px 11px;font-size:11px;display:flex;gap:7px;align-items:center}
+.achievement.locked{opacity:.48;filter:grayscale(1)}
+.achievement strong{display:block;color:var(--green)}
+.achievement span{font-size:20px}
+.clear-progress{border:1px solid #e6c6b8;background:#fff5f0;color:#9b382b;padding:7px 10px;border-radius:8px;font-size:11px;font-weight:800}
+.card.completed{border-color:#6ca77b}
+.card.completed .start{background:#417d4c}
+.completion-mark{font-size:10px;color:#26733f;font-weight:900;margin:5px 0}
+.complete-btn{width:100%;border:0;border-radius:9px;padding:12px;background:#dcebd8;color:var(--green);font-weight:900;font-size:12px;margin-top:12px}
+.complete-btn.done{background:#075b40;color:white}
+.complete-btn:hover{filter:brightness(.97)}
+.reward-note{font-size:11px;color:var(--muted);margin-top:8px}
+@media(max-width:1000px){.mission-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.navlinks{gap:12px}.sign{right:4%}.bus{right:27%}}
+@media(max-width:650px){.nav{padding:12px 14px}.navlinks{gap:10px;font-size:11px}.navlinks a:not(.current):not(.home){display:none}.brand{font-size:20px}.hero{padding:25px 18px;min-height:200px}.hero p{max-width:70%}.hills{font-size:55px}.sign{right:12px;bottom:13px;font-size:12px;padding:5px 8px}.bus{right:30%;bottom:10px;font-size:37px}.layout{grid-template-columns:1fr}.sidebar{padding:10px;display:flex;flex-wrap:wrap;gap:3px}.side-title{width:100%;margin-bottom:4px}.filter{width:auto;padding:8px;font-size:11px}.side-note{display:none}main{padding:17px 12px 30px}.mission-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.art{height:90px}.art span{font-size:44px}.card-body{padding:10px}.card h3{font-size:13px}.card p{font-size:10px}.intro h2{font-size:19px}.intro p{font-size:11px}.count{font-size:10px}.actions{flex-direction:column}.progress-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.progress-panel{padding:13px}}
+@media(max-width:390px){.mission-grid{grid-template-columns:1fr}.art{height:115px}.art span{font-size:55px}}
+</style>
+</head>
+<body>
+<header>
+<nav class="nav">
+<a href="../index.html" class="brand">🌿 Monamaathu<small>KANNADA FOR EVERYONE</small></a>
+<div class="navlinks">
+<a href="../index.html">Home</a>
+<a href="../index.html#learn">Learn</a>
+<a class="current" href="./missions.html">Missions</a>
+<a href="dashboard.html">Progress</a>
+<a href="../index.html" class="home">← Home</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hills" aria-hidden="true">🌴　🌳　🌿　🏞️　🌴　🌳</div>
+<div class="hero-content">
+<div class="eyebrow">ನಮ್ಮ ಕರ್ನಾಟಕ · Namma Karnataka</div>
+<h1>Real-life Kannada Missions</h1>
+<p>Learn. Practise. Use Kannada in real situations.</p>
+<div class="kannada">ಜೀವನದಲ್ಲಿ ಕನ್ನಡ ಮಾತಾಡಿ!</div>
+</div>
+<div class="bus" aria-hidden="true">🚌</div>
+<div class="sign">ಜೀವನದಲ್ಲಿ ಕನ್ನಡ</div>
+</section>
+
+<main>
+<section class="progress-panel" id="missionProgress" aria-label="Your learning progress">
+<div class="progress-heading">
+<div>
+<h2>🏆 Your Kannada Journey</h2>
+<p id="levelDescription">Complete missions to earn points and unlock achievements.</p>
+</div>
+<button type="button" class="clear-progress" id="resetProgress">Reset progress</button>
+</div>
+<div class="progress-stats">
+<div class="stat"><div class="stat-label">⭐ Total points</div><div class="stat-value" id="pointsValue">0</div><small>100 points per mission</small></div>
+<div class="stat"><div class="stat-label">🎯 Completed</div><div class="stat-value" id="completedValue">0/9</div><small>Missions completed</small></div>
+<div class="stat"><div class="stat-label">📈 Your level</div><div class="stat-value" id="levelValue">1</div><small id="levelName">Beginner</small></div>
+<div class="stat"><div class="stat-label">🌿 Completion</div><div class="stat-value" id="percentValue">0%</div><small>Of all missions</small></div>
+</div>
+<div class="progress-track" role="progressbar" aria-label="Mission completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+<div class="progress-caption"><span id="progressMessage">Your journey starts here!</span><span id="nextLevelMessage">Keep learning!</span></div>
+<h3 class="badges-title">🏅 Achievements</h3>
+<div class="badges-list" id="badgesList"></div>
+</section>
+
+<div class="intro">
+<div><h2>Choose your next mission</h2><p>Explore everyday situations across Karnataka.</p></div>
+<div class="count"><span id="count">9</span> missions shown</div>
+</div>
+
+<div class="layout">
+<aside class="sidebar">
+<div class="side-title">Explore missions</div>
+<button class="filter active" data-filter="all">🎯 All Missions</button>
+<button class="filter" data-filter="travel">🚌 Travel & Transport</button>
+<button class="filter" data-filter="food">🍛 Food & Restaurant</button>
+<button class="filter" data-filter="shopping">🛒 Shopping & Market</button>
+<button class="filter" data-filter="health">🏥 Health & Hospital</button>
+<button class="filter" data-filter="social">👥 Social & Daily Life</button>
+<div class="side-note"><strong>🌿 Namma Karnataka</strong>Karnataka has a story in every word. Learn a phrase and make it part of your day.</div>
+</aside>
+<section class="mission-grid" id="grid" aria-label="Kannada missions"></section>
+</div>
+
+<section class="tip">
+<div class="tip-icon">🎯</div>
+<div><strong>Ondu hejje, ondu pada!</strong><p>One step, one word. Listen carefully, practise aloud, and keep going.</p></div>
+</section>
+</main>
+<footer>Monamaathu 🌿 · Kannada for Everyone · Namma Karnataka</footer>
+
+<dialog id="missionDialog">
+<div class="dialog-top"><h2 id="dialogTitle">Your mission</h2><button type="button" class="close" id="closeDialog" aria-label="Close">✕</button></div>
+<p class="dialog-intro" id="dialogIntro"></p>
+<div id="phraseArea"></div>
+<div class="actions">
+<button type="button" id="listenButton">🔊 Listen to phrase</button>
+<button type="button" id="nextButton" class="secondary">Next phrase →</button>
+</div>
+<button type="button" id="completeButton" class="complete-btn">🏆 Complete mission · Earn 100 points</button>
+<p class="reward-note" id="rewardNote">Practise all the phrases before completing this mission.</p>
+<p class="status" id="status" role="status" aria-live="polite"></p>
+</dialog>
+
+<script type="module">
+import { supabase } from '../supabase-config.js';
+
+const missions = [
+  {id:"bus",category:"travel",label:"Travel & Transport",title:"Catch a Bus in Bengaluru",desc:"Ask for the bus, check the route, and get to your destination.",icon:"🚌",art:"sage",level:"Easy",time:"5 min",phrases:[
+    ["ಬಸ್ ನಿಲ್ದಾಣ ಎಲ್ಲಿ ಇದೆ?","Bus nildaaṇa elli ide?","Where is the bus stop?"],
+    ["ಈ ಬಸ್ ಮೆಜೆಸ್ಟಿಕ್‌ಗೆ ಹೋಗುತ್ತದೆಯಾ?","Ee bus Majestic-ge hoguttadeyaa?","Does this bus go to Majestic?"],
+    ["ಒಂದು ಟಿಕೆಟ್ ಕೊಡಿ.","Ondu ticket kodi.","One ticket, please."],
+    ["ಇಲ್ಲಿ ಇಳಿಯಬೇಕು.","Illi iliyabeku.","I need to get down here."]
+  ]},
+  {id:"restaurant",category:"food",label:"Food & Restaurant",title:"Order Food at a Restaurant",desc:"Read the menu, order your food, and enjoy a meal.",icon:"🍛",art:"yellow",level:"Easy",time:"5 min",phrases:[
+    ["ಊಟಕ್ಕೆ ಏನು ಇದೆ?","Ootakke enu ide?","What food is available?"],
+    ["ಒಂದು ಮಸಾಲೆ ದೋಸೆ ಕೊಡಿ.","Ondu masale dose kodi.","One masala dosa, please."],
+    ["ನೀರು ಕೊಡಿ, ದಯವಿಟ್ಟು.","Neeru kodi, dayavittu.","Water, please."],
+    ["ಬಿಲ್ ಎಷ್ಟು?","Bill eshtu?","How much is the bill?"]
+  ]},
+  {id:"market",category:"shopping",label:"Shopping & Market",title:"Buy Groceries at a Shop",desc:"Ask for items, learn prices, and make a purchase.",icon:"🏪",art:"orange",level:"Medium",time:"6 min",phrases:[
+    ["ಇದರ ಬೆಲೆ ಎಷ್ಟು?","Idara bele eshtu?","How much does this cost?"],
+    ["ಸ್ವಲ್ಪ ಕಡಿಮೆ ಮಾಡಿ.","Swalpa kadime maadi.","Please reduce the price a little."],
+    ["ಅರ್ಧ ಕಿಲೋ ಕೊಡಿ.","Ardha kilo kodi.","Give me half a kilo."],
+    ["ನನಗೆ ಇದು ಬೇಕು.","Nanage idu beku.","I want this."]
+  ]},
+  {id:"hospital",category:"health",label:"Health & Hospital",title:"Visit a Hospital",desc:"Explain how you feel and ask for the help you need.",icon:"🏥",art:"blue",level:"Medium",time:"7 min",phrases:[
+    ["ನನಗೆ ಸಹಾಯ ಬೇಕು.","Nanage sahaaya beku.","I need help."],
+    ["ನನಗೆ ಹುಷಾರಿಲ್ಲ.","Nanage hushaarilla.","I am not feeling well."],
+    ["ಆಸ್ಪತ್ರೆ ಎಲ್ಲಿ ಇದೆ?","Aaspatre elli ide?","Where is the hospital?"],
+    ["ದಯವಿಟ್ಟು ಸಹಾಯ ಮಾಡಿ.","Dayavittu sahaaya maadi.","Please help me."]
+  ]},
+  {id:"introductions",category:"social",label:"Social & Daily Life",title:"Introduce Yourself",desc:"Meet new people and start a conversation.",icon:"🗣️",art:"pink",level:"Easy",time:"5 min",phrases:[
+    ["ನಮಸ್ಕಾರ!","Namaskaara!","Hello!"],
+    ["ನಿಮ್ಮ ಹೆಸರೇನು?","Nimma hesarenu?","What is your name?"],
+    ["ನನ್ನ ಹೆಸರು ...","Nanna hesaru ...","My name is ..."],
+    ["ನಿಮ್ಮನ್ನು ಭೇಟಿಯಾಗಿ ಸಂತೋಷವಾಯಿತು.","Nimmannu bhetiyaagi santoshavaayitu.","Nice to meet you."]
+  ]},
+  {id:"directions",category:"travel",label:"Travel & Transport",title:"Explore a Heritage Site",desc:"Ask for directions and learn about local places.",icon:"🛕",art:"yellow",level:"Hard",time:"6 min",phrases:[
+    ["ದೇವಸ್ಥಾನ ಎಲ್ಲಿ ಇದೆ?","Devasthaana elli ide?","Where is the temple?"],
+    ["ಅಲ್ಲಿಗೆ ಹೇಗೆ ಹೋಗುವುದು?","Allige hege hoguvudu?","How do I get there?"],
+    ["ಇದು ಹತ್ತಿರದಲ್ಲಿದೆಯಾ?","Idu hattiradallideyaa?","Is it nearby?"],
+    ["ತುಂಬಾ ಧನ್ಯವಾದಗಳು.","Tumba dhanyavaadagalu.","Thank you very much."]
+  ]},
+  {id:"shopping2",category:"shopping",label:"Shopping & Market",title:"Shop for Essentials",desc:"Find what you need at a neighbourhood shop.",icon:"🛍️",art:"lavender",level:"Easy",time:"5 min",phrases:[
+    ["ಸಾಬೂನು ಇದೆಯಾ?","Saaboonu ideyaa?","Do you have soap?"],
+    ["ಇದು ತೋರಿಸಿ.","Idu torisi.","Please show me this."],
+    ["ನನಗೆ ಇದು ಬೇಕು.","Nanage idu beku.","I want this."],
+    ["ಚಿಲ್ಲರೆ ಇದೆಯಾ?","Chillare ideyaa?","Do you have change?"]
+  ]},
+  {id:"home",category:"social",label:"Social & Daily Life",title:"Visit a Neighbour",desc:"Use polite everyday phrases when visiting a home.",icon:"🏡",art:"sage",level:"Easy",time:"6 min",phrases:[
+    ["ನಮಸ್ಕಾರ, ಹೇಗಿದ್ದೀರಾ?","Namaskaara, hegiddiraa?","Hello, how are you?"],
+    ["ಒಳಗೆ ಬನ್ನಿ.","Olage banni.","Please come inside."],
+    ["ನೀರು ಬೇಕಾ?","Neeru bekaa?","Would you like some water?"],
+    ["ನಿಮ್ಮ ಮನೆ ಚೆನ್ನಾಗಿದೆ.","Nimma mane chennaagide.","Your home is lovely."]
+  ]},
+  {id:"festival",category:"social",label:"Culture & Festivals",title:"Join a Local Festival",desc:"Share greetings during Karnataka celebrations.",icon:"🎉",art:"pink",level:"Medium",time:"6 min",phrases:[
+    ["ಹಬ್ಬದ ಶುಭಾಶಯಗಳು!","Habbada shubhaashayagalu!","Festival greetings!"],
+    ["ತುಂಬಾ ಚೆನ್ನಾಗಿದೆ!","Tumba chennaagide!","It's very nice!"],
+    ["ನಿಮಗೆ ಸಿಹಿ ಬೇಕಾ?","Nimage sihi bekaa?","Would you like some sweets?"],
+    ["ಧನ್ಯವಾದಗಳು.","Dhanyavaadagalu.","Thank you."]
+  ]}
+];
+
+const STORAGE_KEY = "monamaathuMissionProgressV1";
+const grid = document.getElementById("grid");
+const dialog = document.getElementById("missionDialog");
+const statusText = document.getElementById("status");
+const completeButton = document.getElementById("completeButton");
+
+let chosen = null;
+let index = 0;
+let currentAudio = null;
+let audioRequest = 0;
+let activeFilter = "all";
+
+const achievementDefinitions = [
+  {id:"first",icon:"🌱",name:"First Step",description:"Complete your first mission.",goal:1},
+  {id:"three",icon:"🔥",name:"On a Roll",description:"Complete 3 missions.",goal:3},
+  {id:"five",icon:"⭐",name:"Kannada Explorer",description:"Complete 5 missions.",goal:5},
+  {id:"all",icon:"👑",name:"Namma Champion",description:"Complete all 9 missions.",goal:9}
+];
+
+function loadProgress() {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"completed":[]}');
+    const completed = Array.isArray(data.completed)
+      ? [...new Set(data.completed.filter(id => missions.some(m => m.id === id)))]
+      : [];
+
+    return {completed, points: completed.length * 100};
+  } catch {
+    return {completed: [], points: 0};
+  }
+}
+
+let progress = loadProgress();
+
+function saveProgress() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function getLevel(points) {
+  if (points >= 900) return {number:5,name:"Kannada Champion"};
+  if (points >= 600) return {number:4,name:"Fluent Explorer"};
+  if (points >= 300) return {number:3,name:"Confident Speaker"};
+  if (points >= 100) return {number:2,name:"Phrase Learner"};
+  return {number:1,name:"Beginner"};
+}
+
+function renderProgress() {
+  const completed = progress.completed.length;
+  const points = completed * 100;
+  const percent = Math.round(completed / missions.length * 100);
+  const level = getLevel(points);
+
+  document.getElementById("pointsValue").textContent = points;
+  document.getElementById("completedValue").textContent = `${completed}/${missions.length}`;
+  document.getElementById("levelValue").textContent = level.number;
+  document.getElementById("levelName").textContent = level.name;
+  document.getElementById("percentValue").textContent = `${percent}%`;
+  document.getElementById("levelDescription").textContent =
+    `${level.name} · Every completed mission earns 100 points.`;
+
+  document.getElementById("progressFill").style.width = `${percent}%`;
+  document.getElementById("progressBar").setAttribute("aria-valuenow", String(percent));
+
+  document.getElementById("progressMessage").textContent =
+    completed === 0 ? "Your journey starts here!" :
+    completed === missions.length ? "Amazing! All missions completed!" :
+    `${completed} mission${completed === 1 ? "" : "s"} completed. Keep going!`;
+
+  document.getElementById("nextLevelMessage").textContent =
+    completed === missions.length ? "You reached the top!" :
+    `${(Math.floor(points / 300) + 1) * 300 - points} points to your next major milestone`;
+
+  const badges = document.getElementById("badgesList");
+  badges.innerHTML = "";
+
+  achievementDefinitions.forEach(item => {
+    const unlocked = completed >= item.goal;
+    const badge = document.createElement("div");
+    badge.className = "achievement" + (unlocked ? "" : " locked");
+    badge.title = item.description;
+
+    const icon = document.createElement("span");
+    icon.textContent = unlocked ? item.icon : "🔒";
+
+    const text = document.createElement("div");
+    const strong = document.createElement("strong");
+    strong.textContent = item.name;
+
+    const small = document.createElement("small");
+    small.textContent = unlocked ? "Unlocked" : item.description;
+
+    text.append(strong, small);
+    badge.append(icon, text);
+    badges.appendChild(badge);
+  });
+}
+
+function render(filter = activeFilter) {
+  activeFilter = filter;
+  grid.innerHTML = "";
+
+  const visible = missions.filter(m => filter === "all" || m.category === filter);
+  document.getElementById("count").textContent = visible.length;
+
+  if (!visible.length) {
+    grid.innerHTML = '<div class="empty">No missions in this category.</div>';
+    return;
+  }
+
+  visible.forEach(m => {
+    const isComplete = progress.completed.includes(m.id);
+    const card = document.createElement("article");
+    card.className = "card" + (isComplete ? " completed" : "");
+
+    const art = document.createElement("div");
+    art.className = "art " + m.art;
+
+    const sun = document.createElement("span");
+    sun.className = "sun";
+    sun.textContent = "☀️";
+
+    const badge = document.createElement("span");
+    badge.className = "badge";
+    badge.textContent = isComplete ? "✓ Completed" : m.level;
+
+    const icon = document.createElement("span");
+    icon.textContent = m.icon;
+    art.append(sun, badge, icon);
+
+    const body = document.createElement("div");
+    body.className = "card-body";
+
+    const category = document.createElement("div");
+    category.className = "category";
+    category.textContent = m.label;
+
+    const title = document.createElement("h3");
+    title.textContent = m.title;
+
+    const desc = document.createElement("p");
+    desc.textContent = m.desc;
+
+    const phrase = document.createElement("div");
+    phrase.className = "phrase";
+    phrase.textContent = m.phrases[0][0];
+
+    const meta = document.createElement("div");
+    meta.className = "meta";
+
+    const time = document.createElement("span");
+    time.textContent = "◷ " + m.time;
+
+    const level = document.createElement("span");
+    level.className = "level" + (m.level === "Medium" ? " medium" : m.level === "Hard" ? " hard" : "");
+    level.textContent = m.level;
+    meta.append(time, level);
+
+    if (isComplete) {
+      const mark = document.createElement("div");
+      mark.className = "completion-mark";
+      mark.textContent = "✓ Completed · +100 points";
+      body.append(category, title, desc, phrase, meta, mark);
+    } else {
+      body.append(category, title, desc, phrase, meta);
+    }
+
+    const start = document.createElement("button");
+    start.type = "button";
+    start.className = "start";
+    start.textContent = isComplete ? "Review Mission" : "Start Mission";
+
+    const arrow = document.createElement("span");
+    arrow.textContent = "→";
+    start.appendChild(arrow);
+    start.addEventListener("click", () => openMission(m));
+
+    body.appendChild(start);
+    card.append(art, body);
+    grid.appendChild(card);
+  });
+}
+
+document.querySelectorAll("[data-filter]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    render(btn.dataset.filter);
+  });
+});
+
+function stopAudio() {
+  audioRequest++;
+
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.src = "";
+    currentAudio = null;
+  }
+
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+
+function browserVoice(text) {
+  return new Promise((resolve, reject) => {
+    if (!("speechSynthesis" in window)) {
+      reject(new Error("Speech unavailable"));
+      return;
+    }
+
+    const voices = window.speechSynthesis.getVoices();
+    const voice = voices.find(v => v.lang.toLowerCase().startsWith("kn"));
+
+    if (!voice) {
+      reject(new Error("No Kannada browser voice"));
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.voice = voice;
+    utterance.lang = voice.lang;
+    utterance.rate = 0.8;
+    utterance.onend = resolve;
+    utterance.onerror = () => reject(new Error("Speech failed"));
+    window.speechSynthesis.speak(utterance);
+  });
+}
+
+async function speakKannada(text, button) {
+  if (!text) return;
+
+  stopAudio();
+  const request = audioRequest;
+  statusText.textContent = "Loading Kannada audio...";
+  button.disabled = true;
+
+  try {
+    const url = new URL("https://translate.google.com/translate_tts");
+    url.searchParams.set("ie", "UTF-8");
+    url.searchParams.set("client", "gtx");
+    url.searchParams.set("tl", "kn");
+    url.searchParams.set("q", text);
+
+    const audio = new Audio(url.toString());
+    currentAudio = audio;
+    audio.preload = "auto";
+
+    await new Promise((resolve, reject) => {
+      audio.onended = resolve;
+      audio.onerror = () => reject(new Error("Online audio failed"));
+      const promise = audio.play();
+      if (promise && promise.catch) promise.catch(reject);
+    });
+
+    if (request === audioRequest) {
+      statusText.textContent = "Kannada audio finished. Try saying it aloud!";
+    }
+  } catch {
+    if (request !== audioRequest) return;
+
+    try {
+      statusText.textContent = "Trying browser Kannada voice...";
+      await browserVoice(text);
+
+      if (request === audioRequest) {
+        statusText.textContent = "Audio finished. Now try saying it yourself!";
+      }
+    } catch {
+      if (request === audioRequest) {
+        statusText.textContent = "Audio unavailable. Check your internet connection.";
+      }
+    }
+  } finally {
+    if (request === audioRequest) {
+      button.disabled = false;
+      currentAudio = null;
+    }
+  }
+}
+
+function openMission(m) {
+  stopAudio();
+  chosen = m;
+  index = 0;
+
+  document.getElementById("dialogTitle").textContent = m.icon + " " + m.title;
+  document.getElementById("dialogIntro").textContent =
+    m.desc + " Read the phrase, check its meaning, and practise saying it aloud.";
+
+  renderPhrase();
+  updateCompleteButton();
+  dialog.showModal();
+}
+
+function renderPhrase() {
+  if (!chosen) return;
+
+  const p = chosen.phrases[index];
+  const area = document.getElementById("phraseArea");
+  area.innerHTML = "";
+
+  const box = document.createElement("div");
+  box.className = "dialog-phrase";
+
+  const kannada = document.createElement("strong");
+  kannada.textContent = p[0];
+
+  const pron = document.createElement("span");
+  pron.className = "pron";
+  pron.textContent = "Pronunciation: " + p[1];
+
+  const meaning = document.createElement("p");
+  meaning.textContent = p[2];
+
+  box.append(kannada, pron, meaning);
+  area.appendChild(box);
+
+  statusText.textContent = "Phrase " + (index + 1) + " of " + chosen.phrases.length;
+
+  document.getElementById("nextButton").textContent =
+    index === chosen.phrases.length - 1 ? "Start again ↻" : "Next phrase →";
+}
+
+function updateCompleteButton() {
+  if (!chosen) return;
+
+  const done = progress.completed.includes(chosen.id);
+  completeButton.disabled = done;
+  completeButton.classList.toggle("done", done);
+
+  completeButton.textContent = done
+    ? "✓ Mission completed · 100 points earned"
+    : "🏆 Complete mission · Earn 100 points";
+
+  document.getElementById("rewardNote").textContent = done
+    ? "You have already earned the points for this mission. Review the phrases any time."
+    : "Complete this mission when you have practised the phrases. You can earn points only once per mission.";
+}
+
+/*
+ * Each mission awards points only once locally.
+ * Supabase sync is attempted only for a new completion.
+ */
+completeButton.addEventListener("click", async () => {
+  if (!chosen) return;
+
+  const missionId = chosen.id;
+
+  // Critical duplicate check: never award points twice for the same mission.
+  if (progress.completed.includes(missionId)) {
+    updateCompleteButton();
+    statusText.textContent = "You have already earned points for this mission.";
+    return;
+  }
+
+  // Mark completed immediately so rapid clicks cannot add duplicate rewards.
+  progress.completed.push(missionId);
+  progress.points = progress.completed.length * 100;
+
+  const saved = saveProgress();
+
+  renderProgress();
+  render(activeFilter);
+  updateCompleteButton();
+
+  statusText.textContent = saved
+    ? "Mission completed! You earned 100 points."
+    : "Mission completed for this session, but browser storage could not save it.";
+
+  document.getElementById("rewardNote").textContent = saved
+    ? "Your progress is saved in this browser."
+    : "Browser storage is unavailable. Your progress may not remain after closing the page.";
+
+  // Only try to sync after a new local completion.
+  try {
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      statusText.textContent = "Mission completed locally. Sign in to sync points to your account.";
+      return;
+    }
+
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("total_points")
+      .eq("id", user.id)
+      .single();
+
+    if (profileError || !profile) {
+      statusText.textContent = "Mission completed locally. Online points could not be loaded.";
+      return;
+    }
+
+    const { error: updateError } = await supabase
+      .from("profiles")
+      .update({ total_points: (Number(profile.total_points) || 0) + 100 })
+      .eq("id", user.id);
+
+    if (updateError) {
+      statusText.textContent = "Mission completed locally. Online points could not be updated.";
+      return;
+    }
+
+    statusText.textContent = "Mission completed! 100 points added to your online profile.";
+    document.getElementById("rewardNote").textContent =
+      "Local mission progress is saved. Online profile points were updated.";
+  } catch {
+    statusText.textContent = "Mission completed locally. Online sync is unavailable right now.";
+  }
+});
+
+document.getElementById("listenButton").addEventListener("click", function () {
+  if (chosen) speakKannada(chosen.phrases[index][0], this);
+});
+
+document.getElementById("nextButton").addEventListener("click", () => {
+  if (!chosen) return;
+  stopAudio();
+  index = (index + 1) % chosen.phrases.length;
+  renderPhrase();
+});
+
+document.getElementById("closeDialog").addEventListener("click", () => {
+  stopAudio();
+  dialog.close();
+});
+
+dialog.addEventListener("close", stopAudio);
+
+document.getElementById("resetProgress").addEventListener("click", () => {
+  const confirmed = window.confirm(
+    "Reset all mission completions, points, levels and badges saved in this browser? This cannot be undone."
+  );
+
+  if (!confirmed) return;
+
+  progress = {completed: [], points: 0};
+  saveProgress();
+  renderProgress();
+  render(activeFilter);
+  updateCompleteButton();
+
+  statusText.textContent =
+    "Your local mission progress has been reset. Online profile points are unchanged.";
+});
+
+renderProgress();
+render();
+</script>
+</script>
+</body>
+</html>

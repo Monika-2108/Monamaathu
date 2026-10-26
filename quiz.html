@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monamaathu | Lesson Quiz</title>
+
+  <style>
+    :root {
+      --green: #245b43;
+      --green-dark: #17432f;
+      --cream: #fffaf0;
+      --gold: #d8ae54;
+      --text: #26352c;
+      --muted: #6b786e;
+      --white: #ffffff;
+      --border: #e8e4d8;
+      --success: #e7f6eb;
+      --error: #fff0ed;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--green);
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 35px auto;
+      padding: 0 18px 45px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .intro h1 {
+      color: var(--green);
+      margin-bottom: 8px;
+      font-size: 30px;
+    }
+
+    .intro p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .quiz-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 18px;
+      box-shadow: 0 5px 18px rgba(36, 91, 67, 0.05);
+    }
+
+    .question-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 16px;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      border: 1px solid var(--border);
+      padding: 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      line-height: 1.5;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .option:hover {
+      background: #f7f8f2;
+      border-color: var(--green);
+    }
+
+    .option input {
+      margin-top: 4px;
+      accent-color: var(--green);
+    }
+
+    .option.correct {
+      background: var(--success);
+      border-color: #60a878;
+    }
+
+    .option.incorrect {
+      background: var(--error);
+      border-color: #df8176;
+    }
+
+    .feedback {
+      margin-top: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .correct-text { color: #247344; }
+    .incorrect-text { color: #b23d31; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    button, .button-link {
+      display: inline-block;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: var(--green);
+      color: white;
+    }
+
+    .primary:hover { background: var(--green-dark); }
+
+    .secondary {
+      background: #f0e8d5;
+      color: var(--green-dark);
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    #result {
+      display: none;
+      text-align: center;
+      background: white;
+      border: 2px solid var(--gold);
+      border-radius: 18px;
+      padding: 26px 20px;
+      margin-top: 25px;
+    }
+
+    #result h2 {
+      color: var(--green);
+      margin-top: 0;
+    }
+
+    #score {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--green);
+      margin: 15px 0;
+    }
+
+    #saveStatus {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    .notice {
+      background: #fff5d9;
+      border: 1px solid #ead59b;
+      padding: 14px;
+      border-radius: 10px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 600px) {
+      .intro h1 { font-size: 25px; }
+      .quiz-card { padding: 18px; }
+      header { padding: 16px 5%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">🌼 Monamaathu</div>
+    <a href="./index.html">← Dashboard</a>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1 id="pageTitle">Lesson Quiz</h1>
+      <p id="pageDescription">Answer all questions to check your score.</p>
+    </section>
+
+    <div id="notice" class="notice hidden"></div>
+    <div id="questions"></div>
+
+    <div id="quizActions" class="actions">
+      <button id="submitButton" class="primary" type="button">
+        Submit Answers
+      </button>
+      <a id="reviewLink" class="button-link secondary" href="./lesson.html">
+        ← Review Lesson
+      </a>
+    </div>
+
+    <section id="result">
+      <h2 id="resultTitle">Quiz completed!</h2>
+      <div id="score"></div>
+      <p id="resultMessage"></p>
+      <p id="saveStatus"></p>
+      <div class="actions">
+        <a id="reviewAgainLink" class="button-link secondary" href="./lesson.html">
+          Review Lesson
+        </a>
+        <button id="retryButton" class="primary" type="button">
+          Try Again
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { supabase } from "./supabase-config.js";
+    import { modules } from "./modules/lessons-data.js";
+
+    const params = new URLSearchParams(window.location.search);
+    const moduleId = params.get("module") || "conversations";
+    const lessonNumber = Number.parseInt(params.get("lesson") || "1", 10);
+
+    const moduleData = modules.find((item) => item.id === moduleId);
+    const lesson = moduleData?.lessons?.[lessonNumber - 1];
+
+    const questionsContainer = document.getElementById("questions");
+    const notice = document.getElementById("notice");
+    const submitButton = document.getElementById("submitButton");
+    const result = document.getElementById("result");
+    const quizActions = document.getElementById("quizActions");
+    const reviewLink = document.getElementById("reviewLink");
+    const reviewAgainLink = document.getElementById("reviewAgainLink");
+
+    const lessonUrl =
+      `./lesson.html?module=${encodeURIComponent(moduleId)}&lesson=${lessonNumber}`;
+
+    reviewLink.href = lessonUrl;
+    reviewAgainLink.href = lessonUrl;
+
+    let submitted = false;
+
+    function showNotice(message) {
+      notice.textContent = message;
+      notice.classList.remove("hidden");
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[character]);
+    }
+
+    function validatePage() {
+      if (!moduleData) {
+        showNotice("Module not found. Please return to the dashboard.");
+        submitButton.disabled = true;
+        return false;
+      }
+
+      if (!Number.isInteger(lessonNumber) ||
+          lessonNumber < 1 ||
+          lessonNumber > (moduleData.lessons?.length || 0)) {
+        showNotice("This lesson number is invalid.");
+        submitButton.disabled = true;
+        return false;
+      }
+
+      if (!lesson || !Array.isArray(lesson.questions) ||
+          lesson.questions.length === 0) {
+        document.getElementById("pageTitle").textContent =
+          `${moduleData.title || moduleData.id} — Lesson ${lessonNumber}`;
+
+        showNotice(
+          "Questions for this lesson have not been added yet. " +
+          "The quiz will appear here when its questions are ready."
+        );
+
+        submitButton.disabled = true;
+        return false;
+      }
+
+      const validQuestions = lesson.questions.every((question) =>
+        typeof question.question === "string" &&
+        Array.isArray(question.options) &&
+        question.options.length > 0 &&
+        question.options.some((option) => option === question.answer)
+      );
+
+      if (!validQuestions) {
+        showNotice(
+          "Some quiz questions are missing valid answer data. " +
+          "Please check this lesson in lessons-data.js."
+        );
+        submitButton.disabled = true;
+        return false;
+      }
+
+      return true;
+    }
+
+    function renderQuestions() {
+      document.getElementById("pageTitle").textContent =
+        `${lesson.title || `Lesson ${lessonNumber}`} — Quiz`;
+
+      document.getElementById("pageDescription").textContent =
+        `Answer all ${lesson.questions.length} questions to check your score.`;
+
+      questionsContainer.innerHTML = lesson.questions.map((question, index) => `
+        <section class="quiz-card" data-question="${index}">
+          <h2 class="question-title">
+            ${index + 1}. ${escapeHtml(question.question)}
+          </h2>
+
+          <div class="options">
+            ${question.options.map((option, optionIndex) => `
+              <label class="option" data-option="${optionIndex}">
+                <input
+                  type="radio"
+                  name="question-${index}"
+                  value="${escapeHtml(option)}"
+                />
+                <span>${escapeHtml(option)}</span>
+              </label>
+            `).join("")}
+          </div>
+
+          <div class="feedback" aria-live="polite"></div>
+        </section>
+      `).join("");
+    }
+
+    function getScore() {
+      let score = 0;
+
+      lesson.questions.forEach((question, index) => {
+        const selected = document.querySelector(
+          `input[name="question-${index}"]:checked`
+        );
+
+        if (selected && selected.value === question.answer) {
+          score += 1;
+        }
+      });
+
+      return score;
+    }
+
+    function showFeedback() {
+      lesson.questions.forEach((question, index) => {
+        const card = questionsContainer.querySelector(
+          `[data-question="${index}"]`
+        );
+        const selected = card.querySelector(
+          `input[name="question-${index}"]:checked`
+        );
+        const feedback = card.querySelector(".feedback");
+
+        card.querySelectorAll(".option").forEach((optionLabel) => {
+          const input = optionLabel.querySelector("input");
+
+          if (input.value === question.answer) {
+            optionLabel.classList.add("correct");
+          }
+
+          if (selected &&
+              input.checked &&
+              input.value !== question.answer) {
+            optionLabel.classList.add("incorrect");
+          }
+
+          input.disabled = true;
+        });
+
+        if (selected && selected.value === question.answer) {
+          feedback.textContent = "Correct! Well done! 🌟";
+          feedback.className = "feedback correct-text";
+        } else {
+          feedback.textContent =
+            `Correct answer: ${question.answer}`;
+          feedback.className = "feedback incorrect-text";
+        }
+      });
+    }
+
+    async function saveLessonProgress(score) {
+      const { data: authData, error: authError } =
+        await supabase.auth.getUser();
+
+      if (authError) {
+        throw authError;
+      }
+
+      const user = authData?.user;
+
+      if (!user) {
+        return {
+          message: "Quiz score calculated. Sign in to save lesson progress."
+        };
+      }
+
+      // Save this individual lesson, not just the whole module.
+      const { error: lessonError } = await supabase
+        .from("individual_lesson_progress")
+        .upsert({
+          user_id: user.id,
+          module_id: moduleId,
+          lesson_number: lessonNumber,
+          completed: true,
+          completed_at: new Date().toISOString()
+        }, {
+          onConflict: "user_id,module_id,lesson_number"
+        });
+
+      if (lessonError) {
+        throw lessonError;
+      }
+
+      let message = "Lesson completion saved successfully.";
+
+      // Award module-completion points only when the final lesson is completed.
+      const totalLessons = moduleData.lessons?.length || 30;
+
+      if (lessonNumber === totalLessons) {
+        const { error: moduleError } = await supabase.rpc(
+          "complete_lesson",
+          {
+            p_topic: moduleId,
+            p_score: Math.round(
+              (score / lesson.questions.length) * 100
+            )
+          }
+        );
+
+        if (moduleError) {
+          message +=
+            " Individual lesson saved, but module completion could not be updated: " +
+            moduleError.message;
+        } else {
+          message += " Module completion checked.";
+        }
+      }
+
+      return { message };
+    }
+
+    async function submitQuiz() {
+      if (submitted) return;
+
+      const unanswered = lesson.questions.filter((question, index) =>
+        !document.querySelector(
+          `input[name="question-${index}"]:checked`
+        )
+      ).length;
+
+      if (unanswered > 0) {
+        showNotice(`Please answer all questions. ${unanswered} remaining.`);
+        return;
+      }
+
+      submitted = true;
+      submitButton.disabled = true;
+      submitButton.textContent = "Checking answers…";
+      notice.classList.add("hidden");
+
+      const score = getScore();
+      const total = lesson.questions.length;
+      const percentage = Math.round((score / total) * 100);
+
+      showFeedback();
+
+      document.getElementById("score").textContent =
+        `Your score: ${score} out of ${total} (${percentage}%)`;
+
+      document.getElementById("resultMessage").textContent =
+        score === total
+          ? "Perfect score! Excellent work! 🌟"
+          : score >= Math.ceil(total * 0.6)
+            ? "Well done! Keep practising with Mona! 🌼"
+            : "Keep practising. You can try again and improve! 🌼";
+
+      result.style.display = "block";
+      quizActions.classList.add("hidden");
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      const saveStatus = document.getElementById("saveStatus");
+      saveStatus.textContent = "Saving your progress…";
+
+      try {
+        const saved = await saveLessonProgress(score);
+        saveStatus.textContent = saved.message;
+      } catch (error) {
+        console.error("Could not save quiz progress:", error);
+        saveStatus.textContent =
+          "Your score is shown, but progress could not be saved. " +
+          (error?.message || "Please check your Supabase setup.");
+      }
+    }
+
+    function retryQuiz() {
+      submitted = false;
+      result.style.display = "none";
+      quizActions.classList.remove("hidden");
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit Answers";
+      notice.classList.add("hidden");
+
+      renderQuestions();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    if (validatePage()) {
+      renderQuestions();
+      submitButton.addEventListener("click", submitQuiz);
+      document.getElementById("retryButton").addEventListener("click", retryQuiz);
+    }
+  </script>
+</body>
+</html>

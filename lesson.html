@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kannada Lesson | Monamaathu</title>
+
+<style>
+:root{--green:#164b35;--dark:#103c2a;--cream:#fffaf0;--gold:#d4a94f;--muted:#69756c;--light:#e8f2e8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Arial,sans-serif;background:var(--cream);color:#25372c;line-height:1.7}
+button,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+header{background:white;border-bottom:1px solid #e8e3d7;padding:15px 22px}
+.navbar{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand{color:var(--green);font-size:22px;font-weight:800}
+.brand small{display:block;font-size:10px;letter-spacing:1.5px;color:var(--muted)}
+.back-link{color:var(--green);font-size:14px;font-weight:700}
+main{max-width:950px;margin:auto;padding:30px 20px 60px}
+.language-bar{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-bottom:22px;font-size:13px}
+select{padding:10px 12px;border:1px solid #d9e1d4;border-radius:10px;background:white;color:var(--green)}
+.welcome{display:flex;align-items:center;gap:25px;padding:25px;background:linear-gradient(120deg,#e8f2e8,#f7edcf);border-radius:22px;margin-bottom:25px}
+.mona-image{width:125px;height:145px;object-fit:contain;flex-shrink:0}
+.welcome-label,.topic-label{color:#9a742e;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+h1{color:var(--dark);font-size:clamp(26px,4vw,36px);line-height:1.2;margin:8px 0}
+.welcome p,.description{color:#536457;font-size:14px}
+.lesson-card{padding:30px;background:white;border:1px solid #ebe8dd;border-radius:20px;box-shadow:0 8px 25px #203b250a}
+.lesson-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.lesson-count{color:var(--muted);font-size:12px;font-weight:700}
+.progress-track{width:100%;height:7px;margin-top:15px;background:#edf0e9;border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;background:var(--green);transition:width .2s}
+h2{color:var(--green);font-size:clamp(23px,3vw,30px);margin-top:23px;line-height:1.3}
+.description{margin-top:8px}
+.phrase-list{display:grid;gap:14px;margin-top:24px}
+.phrase{padding:20px;border:1px solid #e7eadf;border-radius:15px;background:#fffefa}
+.phrase-kannada{color:var(--green);font-size:25px;font-weight:800}
+.phrase-pronunciation{color:#9a742e;font-size:13px;margin-top:3px}
+.phrase-meaning{color:#526156;margin-top:7px;font-size:14px}
+.phrase-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+.small-button{padding:8px 12px;border:1px solid #dce4d6;border-radius:9px;background:white;color:var(--green);font-size:12px;font-weight:700}
+.small-button:hover{background:var(--light)}
+.small-button:disabled{opacity:.6;cursor:wait}
+.audio-status{font-size:12px;color:var(--muted);margin-top:10px;min-height:18px}
+.navigation{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:25px}
+.nav-button{display:inline-block;padding:12px 19px;border:none;border-radius:11px;background:var(--green);color:white;font-weight:700}
+.nav-button:hover{background:var(--dark)}
+.nav-button:disabled{background:#d9dfd8;color:#788078;cursor:not-allowed}
+.page-indicator{color:var(--muted);font-size:12px;text-align:center}
+.quiz-callout{margin-top:25px;padding:20px;background:var(--light);border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.quiz-callout strong{color:var(--green)}
+.bottom-note{text-align:center;margin-top:25px;color:var(--muted);font-size:12px}
+footer{text-align:center;padding:25px;background:var(--dark);color:#d9e8dc;font-size:12px}
+@media(max-width:600px){
+main{padding:22px 13px 45px}
+.welcome{flex-direction:column;text-align:center;padding:20px;gap:8px}
+.mona-image{width:110px;height:120px}
+.lesson-card{padding:20px 15px}
+.phrase{padding:15px}
+.phrase-kannada{font-size:22px}
+.navigation{gap:8px}
+.nav-button{padding:11px 13px;font-size:12px}
+.page-indicator{font-size:10px}
+}
+</style>
+</head>
+
+<body>
+<header>
+<nav class="navbar">
+<a href="./index.html" class="brand">Monamaathu 🌿<small>KANNADA FOR EVERYONE</small></a>
+<a href="./index.html#learn" class="back-link">← All topics</a>
+</nav>
+</header>
+
+<main>
+<div class="language-bar">
+<label for="moduleSelect">Module:</label>
+<select id="moduleSelect" aria-label="Choose a module"></select>
+</div>
+
+<section class="welcome">
+<img src="./mona.png" alt="Mona, your Kannada learning companion" class="mona-image">
+<div>
+<div class="welcome-label">Your learning companion</div>
+<h1>Namaskara! Let's learn Kannada.</h1>
+<p>Learn useful Kannada one lesson at a time. Listen, repeat, and practise!</p>
+</div>
+</section>
+
+<section class="lesson-card">
+<div class="lesson-top">
+<div class="topic-label" id="topicLabel">Everyday Conversations</div>
+<div class="lesson-count" id="lessonCount">Lesson 1 of 30</div>
+</div>
+
+<div class="progress-track">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<h2 id="lessonTitle">Loading lesson...</h2>
+<p class="description" id="lessonDescription"></p>
+<div class="phrase-list" id="phraseList"></div>
+<div class="audio-status" id="audioStatus" role="status" aria-live="polite"></div>
+
+<div class="quiz-callout">
+<div><strong>Ready to practise?</strong><br><span class="description">Take the five-question quiz for this lesson.</span></div>
+<a class="nav-button" id="quizLink" href="./quiz.html">Start quiz →</a>
+</div>
+
+<div class="navigation">
+<button class="nav-button" id="previousButton" type="button">← Previous</button>
+<div class="page-indicator" id="pageIndicator"></div>
+<button class="nav-button" id="nextButton" type="button">Next →</button>
+</div>
+</section>
+
+<p class="bottom-note">Learn at your own pace. Listen, repeat, and enjoy speaking Kannada! 🌼</p>
+</main>
+
+<footer>Monamaathu 🌿 · Kannada for Everyone</footer>
+
+<script type="module">
+import { modules } from "./modules/lessons-data.js";
+
+const moduleSelect = document.getElementById("moduleSelect");
+const params = new URLSearchParams(location.search);
+
+let moduleId = params.get("module") || "conversations";
+let lessonNumber = Math.max(1, Number(params.get("lesson")) || 1);
+
+const topicLabel = document.getElementById("topicLabel");
+const lessonCount = document.getElementById("lessonCount");
+const progressFill = document.getElementById("progressFill");
+const lessonTitle = document.getElementById("lessonTitle");
+const lessonDescription = document.getElementById("lessonDescription");
+const phraseList = document.getElementById("phraseList");
+const previousButton = document.getElementById("previousButton");
+const nextButton = document.getElementById("nextButton");
+const pageIndicator = document.getElementById("pageIndicator");
+const quizLink = document.getElementById("quizLink");
+const audioStatus = document.getElementById("audioStatus");
+
+let currentAudio = null;
+let audioRequest = 0;
+
+function currentModule() {
+    return modules.find(m => m.id === moduleId) || modules[0];
+}
+
+modules.forEach(module => {
+    const option = document.createElement("option");
+    option.value = module.id;
+    option.textContent = module.title;
+    moduleSelect.appendChild(option);
+});
+
+if (!modules.some(m => m.id === moduleId)) {
+    moduleId = modules[0].id;
+}
+
+moduleSelect.value = moduleId;
+
+function stopAudio() {
+    audioRequest++;
+
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.src = "";
+        currentAudio = null;
+    }
+
+    if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+    }
+}
+
+function playBrowserVoice(text) {
+    return new Promise((resolve, reject) => {
+        if (!("speechSynthesis" in window)) {
+            reject(new Error("Browser speech is unavailable."));
+            return;
+        }
+
+        const voices = window.speechSynthesis.getVoices();
+        const kannadaVoice = voices.find(voice =>
+            voice.lang.toLowerCase().startsWith("kn")
+        );
+
+        if (!kannadaVoice) {
+            reject(new Error("No Kannada voice is installed in this browser."));
+            return;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = kannadaVoice.lang;
+        utterance.voice = kannadaVoice;
+        utterance.rate = 0.8;
+
+        utterance.onend = resolve;
+        utterance.onerror = () => reject(new Error("Browser speech failed."));
+
+        window.speechSynthesis.speak(utterance);
+    });
+}
+
+async function speakKannada(text, button) {
+    if (!text || !text.trim()) return;
+
+    stopAudio();
+    const requestId = audioRequest;
+
+    audioStatus.textContent = "Loading Kannada audio...";
+    button.disabled = true;
+
+    try {
+        // Google Translate's public TTS endpoint.
+        // This is an unofficial endpoint and may change or become unavailable.
+        const url = new URL("https://translate.google.com/translate_tts");
+        url.searchParams.set("ie", "UTF-8");
+        url.searchParams.set("client", "gtx");
+        url.searchParams.set("tl", "kn");
+        url.searchParams.set("q", text);
+
+        const audio = new Audio(url.toString());
+        currentAudio = audio;
+        audio.preload = "auto";
+
+        await new Promise((resolve, reject) => {
+            audio.onended = resolve;
+            audio.onerror = () => reject(new Error("Online audio could not play."));
+
+            const playPromise = audio.play();
+
+            if (playPromise && typeof playPromise.catch === "function") {
+                playPromise.catch(reject);
+            }
+        });
+
+        if (requestId === audioRequest) {
+            audioStatus.textContent = "Kannada audio finished.";
+        }
+    } catch (error) {
+        if (requestId !== audioRequest) return;
+
+        try {
+            audioStatus.textContent = "Trying your browser's Kannada voice...";
+            await playBrowserVoice(text);
+
+            if (requestId === audioRequest) {
+                audioStatus.textContent = "Kannada audio finished.";
+            }
+        } catch (fallbackError) {
+            if (requestId === audioRequest) {
+                audioStatus.textContent =
+                    "Audio unavailable. Check your internet connection; this browser may not have a Kannada voice.";
+            }
+        }
+    } finally {
+        if (requestId === audioRequest) {
+            button.disabled = false;
+            currentAudio = null;
+        }
+    }
+}
+
+function renderPhrases(phrases) {
+    phraseList.innerHTML = "";
+
+    if (!phrases || phrases.length === 0) {
+        const note = document.createElement("p");
+        note.className = "description";
+        note.textContent = "Content for this lesson is not added yet.";
+        phraseList.appendChild(note);
+        return;
+    }
+
+    phrases.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "phrase";
+
+        const kannada = document.createElement("div");
+        kannada.className = "phrase-kannada";
+        kannada.textContent = item.kannada || "";
+
+        const pronunciation = document.createElement("div");
+        pronunciation.className = "phrase-pronunciation";
+        pronunciation.textContent =
+            "Pronunciation: " + (item.pronunciation || "Not provided");
+
+        const meaning = document.createElement("div");
+        meaning.className = "phrase-meaning";
+        meaning.textContent = item.meaning || "";
+
+        const actions = document.createElement("div");
+        actions.className = "phrase-actions";
+
+        const listen = document.createElement("button");
+        listen.type = "button";
+        listen.className = "small-button";
+        listen.textContent = "🔊 Listen";
+        listen.addEventListener("click", () => speakKannada(item.kannada, listen));
+
+        const repeat = document.createElement("button");
+        repeat.type = "button";
+        repeat.className = "small-button";
+        repeat.textContent = "↻ Repeat";
+        repeat.addEventListener("click", () => speakKannada(item.kannada, repeat));
+
+        actions.append(listen, repeat);
+        card.append(kannada, pronunciation, meaning, actions);
+        phraseList.appendChild(card);
+    });
+}
+
+function renderLesson() {
+    stopAudio();
+    audioStatus.textContent = "";
+
+    const module = currentModule();
+    const lesson = module.lessons.find(item => item.number === lessonNumber)
+        || module.lessons[0];
+
+    if (!lesson) {
+        lessonTitle.textContent = "No lessons available";
+        lessonDescription.textContent = "This module does not have lesson data yet.";
+        phraseList.innerHTML = "";
+        return;
+    }
+
+    lessonNumber = lesson.number;
+    topicLabel.textContent = module.title;
+    lessonCount.textContent = `Lesson ${lessonNumber} of ${module.lessons.length}`;
+    lessonTitle.textContent = lesson.title;
+    lessonDescription.textContent =
+        "Read each phrase, practise the pronunciation, and listen to the Kannada audio.";
+
+    progressFill.style.width =
+        `${(lessonNumber / module.lessons.length) * 100}%`;
+
+    pageIndicator.textContent = `${lessonNumber} / ${module.lessons.length}`;
+    previousButton.disabled = lessonNumber === 1;
+    nextButton.disabled = lessonNumber === module.lessons.length;
+
+    quizLink.href =
+        `./quiz.html?module=${encodeURIComponent(module.id)}&lesson=${lessonNumber}`;
+
+    renderPhrases(lesson.phrases);
+
+    const newUrl =
+        `./lesson.html?module=${encodeURIComponent(module.id)}&lesson=${lessonNumber}`;
+
+    history.replaceState(null, "", newUrl);
+}
+
+function navigate(direction) {
+    const module = currentModule();
+    const nextNumber = lessonNumber + direction;
+
+    if (nextNumber < 1 || nextNumber > module.lessons.length) return;
+
+    lessonNumber = nextNumber;
+    renderLesson();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+moduleSelect.addEventListener("change", () => {
+    moduleId = moduleSelect.value;
+    lessonNumber = 1;
+    renderLesson();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+previousButton.addEventListener("click", () => navigate(-1));
+nextButton.addEventListener("click", () => navigate(1));
+
+renderLesson();
+</script>
+</body>
+</html>

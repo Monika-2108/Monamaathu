@@ -1,0 +1,962 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Monamaathu | Learn Kannada with Mona</title>
+    <meta name="description" content="Learn Kannada naturally with Mona through everyday conversations, culture, food, travel and interactive lessons.">
+
+    <style>
+        :root {
+            --green: #164b35;
+            --green-dark: #103c2a;
+            --green-light: #e8f2e8;
+            --cream: #fffaf0;
+            --gold: #d4a94f;
+            --text: #25372c;
+            --muted: #69756c;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        button, select { font: inherit; }
+
+        .announcement {
+            background: var(--green);
+            color: white;
+            text-align: center;
+            padding: 8px 15px;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 250, 240, 0.96);
+            border-bottom: 1px solid #e9e3d5;
+            backdrop-filter: blur(12px);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            min-height: 78px;
+            margin: auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .brand-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: var(--green);
+            color: var(--gold);
+            font-size: 23px;
+        }
+
+        .brand-name {
+            color: var(--green);
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -0.7px;
+        }
+
+        .brand-subtitle {
+            display: block;
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover { color: #8b6b24; }
+
+        .nav-action {
+            padding: 11px 18px;
+            border-radius: 30px;
+            background: var(--green);
+            color: white !important;
+        }
+
+        .nav-action:hover { background: var(--green-dark); }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 80% 30%, #e6efdc 0, transparent 35%),
+                linear-gradient(125deg, #fffaf0 0%, #f8f4e8 55%, #e9f1e4 100%);
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            min-height: 570px;
+            margin: auto;
+            padding: 55px 24px 45px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .hero-copy { padding: 20px 0; }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--green);
+            background: #e5eee1;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            background: #78a46e;
+            border-radius: 50%;
+        }
+
+        h1 {
+            margin-top: 23px;
+            max-width: 620px;
+            color: var(--green-dark);
+            font-size: clamp(39px, 5.1vw, 66px);
+            line-height: 1.09;
+            letter-spacing: -2.5px;
+        }
+
+        h1 .highlight { color: #ad802e; }
+
+        .hero-description {
+            max-width: 500px;
+            margin-top: 22px;
+            color: #5c6b60;
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 14px 22px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform 0.2s, background 0.2s;
+            cursor: pointer;
+        }
+
+        .button:hover { transform: translateY(-2px); }
+
+        .button-primary {
+            background: var(--green);
+            color: white;
+            box-shadow: 0 7px 18px #164b3520;
+        }
+
+        .button-primary:hover { background: var(--green-dark); }
+
+        .button-secondary {
+            background: white;
+            color: var(--green);
+            border-color: #dce4d6;
+        }
+
+        .hero-trust {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 27px;
+            color: #68766a;
+            font-size: 12px;
+        }
+
+        .hero-trust span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-visual {
+            min-width: 0;
+            min-height: 420px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-circle {
+            position: absolute;
+            width: min(420px, 100%);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: linear-gradient(140deg, #d9e7ce, #f3e5bc);
+            border: 1px solid #ffffffb8;
+        }
+
+        .hero-decoration {
+            position: absolute;
+            z-index: 2;
+            color: #a98132;
+            font-size: 29px;
+        }
+
+        .decoration-one { top: 12%; right: 12%; }
+
+        .decoration-two {
+            bottom: 13%;
+            left: 5%;
+            font-size: 24px;
+        }
+
+        .mona-character {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mona-character img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 535px;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 20px rgba(24, 65, 42, 0.13));
+        }
+
+        .mona-caption {
+            position: absolute;
+            z-index: 3;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+            max-width: 90%;
+            padding: 10px 17px;
+            border: 1px solid #e7e2d4;
+            border-radius: 30px;
+            background: #fffdf7ed;
+            box-shadow: 0 8px 25px #263b2510;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .language-section {
+            padding: 35px 24px;
+            background: white;
+            border-top: 1px solid #f0eadf;
+            border-bottom: 1px solid #f0eadf;
+        }
+
+        .language-inner {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .language-heading {
+            color: var(--green);
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .language-description {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .language-select {
+            width: 100%;
+            max-width: 290px;
+            padding: 13px 15px;
+            background: var(--cream);
+            border: 1px solid #d9e1d4;
+            border-radius: 10px;
+            color: var(--green);
+            outline-color: #8eaa81;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 75px 24px;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 660px;
+            margin: 0 auto 38px;
+        }
+
+        .section-label {
+            color: #9a742e;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin-top: 10px;
+            color: var(--green-dark);
+            font-size: clamp(29px, 4vw, 42px);
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            margin-top: 13px;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .module-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 245px;
+            padding: 25px;
+            background: white;
+            border: 1px solid #ebe8dd;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px #203b2510;
+            transition: transform 0.22s, box-shadow 0.22s;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 13px 30px #203b2515;
+            border-color: #cdddc7;
+        }
+
+        .module-icon {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: var(--green-light);
+            font-size: 28px;
+        }
+
+        .module-card h3 {
+            margin-top: 17px;
+            color: var(--green);
+            font-size: 19px;
+        }
+
+        .module-card p {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .module-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: auto;
+            padding-top: 18px;
+            color: #8b6b24;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .culture-banner {
+            margin-top: 5px;
+            padding: 42px;
+            border-radius: 24px;
+            background: linear-gradient(120deg, #143f2d, #246247);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .culture-banner h2 {
+            max-width: 650px;
+            color: white;
+            font-size: clamp(26px, 3.5vw, 36px);
+        }
+
+        .culture-banner p {
+            max-width: 650px;
+            margin-top: 12px;
+            color: #d9e8dc;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .culture-symbol { flex-shrink: 0; font-size: 65px; }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            margin-top: 38px;
+        }
+
+        .how-card {
+            padding: 26px 22px;
+            border-radius: 16px;
+            background: white;
+            border: 1px solid #ebe8dd;
+        }
+
+        .step-number {
+            color: #a98132;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .how-card h3 {
+            margin-top: 10px;
+            color: var(--green);
+            font-size: 18px;
+        }
+
+        .how-card p {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .final-cta {
+            padding: 70px 24px;
+            text-align: center;
+            background: #edf3e8;
+        }
+
+        .final-cta p {
+            max-width: 570px;
+            margin: 15px auto 25px;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        footer {
+            padding: 30px 24px;
+            background: #103c2a;
+            color: #d9e8dc;
+        }
+
+        .footer-inner {
+            max-width: 1150px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 12px;
+        }
+
+        .footer-brand {
+            color: white;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .footer-note { color: #b9cfc0; }
+
+        @media (max-width: 850px) {
+            .nav-links { gap: 13px; }
+            .nav-links a:not(.nav-action) { display: none; }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 45px;
+                gap: 5px;
+            }
+
+            .hero-copy {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-trust { justify-content: center; }
+            .hero-visual { min-height: 380px; }
+            .mona-character { max-width: 400px; }
+
+            .modules-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+            .language-inner {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .language-select { max-width: none; }
+            .culture-banner { padding: 30px; }
+        }
+
+        @media (max-width: 540px) {
+            .navbar {
+                min-height: 68px;
+                padding: 10px 16px;
+            }
+
+            .brand-name { font-size: 20px; }
+
+            .nav-action {
+                padding: 9px 13px;
+                font-size: 12px;
+            }
+
+            .hero-inner { padding: 35px 18px 30px; }
+            h1 { letter-spacing: -1.5px; }
+            .hero-description { font-size: 15px; }
+            .hero-visual { min-height: 310px; }
+            .hero-circle { width: 88%; }
+            .mona-character { max-width: 330px; }
+
+            .mona-caption {
+                bottom: 0;
+                font-size: 11px;
+            }
+
+            .section { padding: 55px 18px; }
+
+            .modules-grid,
+            .how-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .module-card { min-height: 220px; }
+
+            .culture-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 27px;
+            }
+
+            .culture-symbol { font-size: 45px; }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="announcement">
+        ನಿಮ್ಮ ಕನ್ನಡ ಪ್ರಯಾಣಕ್ಕೆ ಸ್ವಾಗತ · Welcome to your Kannada journey!
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <a class="brand" href="#home" aria-label="Monamaathu home">
+                <div class="brand-icon">ಮ</div>
+                <div>
+                    <div class="brand-name">Monamaathu</div>
+                    <span class="brand-subtitle">Kannada for Everyone</span>
+                </div>
+            </a>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#learn">Learn</a>
+                <a href="#culture">Culture</a>
+                <a href="#how">How it works</a>
+                <a href="modules/dashboard.html">🏆 My Progress</a>
+                <a href="#learn" class="nav-action">Start Learning ↗</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        Your friendly Kannada companion
+                    </div>
+
+                    <h1>
+                        Kannada made
+                        <span class="highlight">simple.</span>
+                        <br>
+                        Culture made closer.
+                    </h1>
+
+                    <p class="hero-description">
+                        Meet Mona, your friendly guide to learning Kannada.
+                        Start speaking through everyday conversations, discover
+                        Karnataka's culture, and learn at your own pace.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#learn" class="button button-primary">
+                            Start learning <span>→</span>
+                        </a>
+                        <a href="#how" class="button button-secondary">
+                            Explore Monamaathu
+                        </a>
+                    </div>
+
+                    <div class="hero-trust">
+                        <span>✓ Beginner friendly</span>
+                        <span>✓ Everyday Kannada</span>
+                        <span>✓ Learn at your pace</span>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-circle"></div>
+                    <span class="hero-decoration decoration-one">✦</span>
+                    <span class="hero-decoration decoration-two">✿</span>
+
+                    <div class="mona-character">
+                        <img
+                            src="mona.png"
+                            alt="Mona, the traditional Kannada learning companion"
+                        >
+                    </div>
+
+                    <div class="mona-caption">
+                        Namaskara! ನಾನು ಮೋನಾ 👋
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="language-section" id="language">
+            <div class="language-inner">
+                <div>
+                    <div class="language-heading">
+                        Learn Kannada in your language
+                    </div>
+                    <p class="language-description">
+                        Choose a language you are comfortable with.
+                    </p>
+                </div>
+
+                <select
+                    class="language-select"
+                    id="languageSelect"
+                    aria-label="Choose your familiar language"
+                >
+                    <option value="English">English</option>
+                    <option value="Malayalam">മലയാളം · Malayalam</option>
+                    <option value="Tamil">தமிழ் · Tamil</option>
+                    <option value="Telugu">తెలుగు · Telugu</option>
+                    <option value="Hindi">हिन्दी · Hindi</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="section" id="learn">
+            <div class="section-heading">
+                <div class="section-label">Your learning journey</div>
+                <h2>Learn Kannada through real life</h2>
+                <p class="section-description">
+                    Explore practical situations and build confidence one
+                    conversation at a time.
+                </p>
+            </div>
+
+            <div class="modules-grid" id="modulesGrid"></div>
+        </section>
+
+        <section class="section" id="culture">
+            <div class="culture-banner">
+                <div>
+                    <div class="section-label" style="color:#e6c778;">
+                        More than words
+                    </div>
+                    <h2>Discover Karnataka, one conversation at a time.</h2>
+                    <p>
+                        Language connects people. Learn expressions used in
+                        everyday life while exploring the food, festivals,
+                        traditions and warmth of Karnataka.
+                    </p>
+                </div>
+
+                <div class="culture-symbol" aria-hidden="true">🌼</div>
+            </div>
+        </section>
+
+        <section class="section" id="how">
+            <div class="section-heading">
+                <div class="section-label">Simple by design</div>
+                <h2>Your Kannada journey starts here</h2>
+                <p class="section-description">
+                    No pressure. Learn useful Kannada step by step.
+                </p>
+            </div>
+
+            <div class="how-grid">
+                <div class="how-card">
+                    <div class="step-number">STEP 01</div>
+                    <h3>Choose your language</h3>
+                    <p>
+                        Select the language you understand best so you can
+                        begin learning comfortably.
+                    </p>
+                </div>
+
+                <div class="how-card">
+                    <div class="step-number">STEP 02</div>
+                    <h3>Practise real situations</h3>
+                    <p>
+                        Learn practical phrases, listen to Kannada
+                        pronunciation and practise useful conversations.
+                    </p>
+                </div>
+
+                <div class="how-card">
+                    <div class="step-number">STEP 03</div>
+                    <h3>Build your confidence</h3>
+                    <p>
+                        Revise your lessons and try quizzes to strengthen
+                        your understanding.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta">
+            <div class="section-label">Ready when you are</div>
+            <h2>Let's speak a little Kannada!</h2>
+            <p>
+                Start with a simple greeting. Every new word brings you
+                closer to a new conversation.
+            </p>
+            <a href="modules/conversations.html?topic=conversations" class="button button-primary">
+                Learn with Mona →
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">Monamaathu 🌿</div>
+                <div class="footer-note">Kannada for Everyone</div>
+            </div>
+
+            <div class="footer-note">
+                Made with care to bring people closer through language.
+            </div>
+
+            <div>© <span id="year"></span> Monamaathu</div>
+        </div>
+    </footer>
+
+    <script>
+        const languageSelect = document.getElementById("languageSelect");
+        const savedLanguage = localStorage.getItem("monamaathu_language");
+
+        if (savedLanguage) {
+            languageSelect.value = savedLanguage;
+        }
+
+        languageSelect.addEventListener("change", function () {
+            localStorage.setItem(
+                "monamaathu_language",
+                languageSelect.value
+            );
+        });
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        const moduleCards = [
+            {
+                id: "conversations",
+                title: "Everyday Conversations",
+                icon: "💬",
+                description: "Learn greetings, introductions and useful sentences for speaking with people."
+            },
+            {
+                id: "shopping",
+                title: "Shopping & Groceries",
+                icon: "🛍️",
+                description: "Practise asking prices, buying vegetables and talking to shopkeepers."
+            },
+            {
+                id: "travel",
+                title: "Travel & Transport",
+                icon: "🚌",
+                description: "Learn directions, bus routes and useful transport phrases."
+            },
+            {
+                id: "food",
+                title: "Food & Restaurants",
+                icon: "🍛",
+                description: "Order food, understand menu items and communicate when eating out."
+            },
+            {
+                id: "culture",
+                title: "Festivals & Culture",
+                icon: "🎉",
+                description: "Discover Karnataka's traditions, celebrations and cultural expressions."
+            },
+            {
+                id: "family",
+                title: "Family & Relationships",
+                icon: "👨‍👩‍👧",
+                description: "Learn to talk about family members and relationships."
+            },
+            {
+                id: "education",
+                title: "Education & College",
+                icon: "📚",
+                description: "Practise Kannada for classes, college and studies."
+            },
+            {
+                id: "work",
+                title: "Work & Careers",
+                icon: "💼",
+                description: "Learn useful Kannada for work and professional situations."
+            },
+            {
+                id: "health",
+                title: "Health & Hospital",
+                icon: "🏥",
+                description: "Explain basic needs and communicate at hospitals."
+            },
+            {
+                id: "emergency",
+                title: "Emergencies & Safety",
+                icon: "🚨",
+                description: "Learn important phrases for urgent situations."
+            },
+            {
+                id: "home",
+                title: "Home & Daily Life",
+                icon: "🏡",
+                description: "Talk about daily routines and activities at home."
+            },
+            {
+                id: "time",
+                title: "Time, Dates & Weather",
+                icon: "🕒",
+                description: "Ask about time, dates and the weather."
+            },
+            {
+                id: "directions",
+                title: "Places & Directions",
+                icon: "📍",
+                description: "Ask where places are and understand directions."
+            },
+            {
+                id: "social",
+                title: "Friends & Social Life",
+                icon: "🤝",
+                description: "Practise friendly conversations and social expressions."
+            },
+            {
+                id: "advanced",
+                title: "Karnataka & Advanced Kannada",
+                icon: "🌿",
+                description: "Explore Karnataka and continue developing your Kannada skills."
+                        },
+            {
+                id: "missions",
+                title: "Real-Life Missions",
+                icon: "🎯",
+                description: "Practise Kannada through real-life situations.",
+                link: "modules/missions.html"
+            }
+        ];
+        const modulesGrid = document.getElementById("modulesGrid");
+
+        modulesGrid.innerHTML = moduleCards.map(module => `
+    <a class="module-card"
+       href="${module.link || `modules/conversations.html?topic=${encodeURIComponent(module.id)}`}">
+        <div class="module-icon">${module.icon}</div>
+        <h3>${module.title}</h3>
+        <p>${module.description}</p>
+        <span class="module-link">${module.link ? "Start mission →" : "Explore lessons →"}</span>
+    </a>
+`).join("");
+    </script>
+</body>
+</html>
